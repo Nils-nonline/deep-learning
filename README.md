@@ -83,17 +83,17 @@ The linear error function is much simpler than the mse, but can only be used for
 ### 'sigmoid'
 The sigmoid activation function. Most commonly used in MLPs
 
-![Graph of the Sigmoid function](./sigmoid.png "Sigmoid Function")
+<img src="./sigmoid.png" alt="Graph of the Sigmoid function" height="100">
 
 ### 'relu'
 
-![Graph of the ReLu function](./relu.png "ReLu Function")
+<img src="./relu.png" alt="Graph of the ReLu function" height="100">
 
 ### 'leaky_relu'
 
-![Graph of the leaky ReLu function](./leaky_relu.png "leaky ReLu Function")
+<img src="./leaky_relu.png" alt="Graph of the leaky ReLu function" height="100">
 
 ### 'heaviside'
 
 The heaviside function can only be used for SLPs
-![Graph of the Heaviside function](./heaviside.png "Heaviside Function")
+<img src="./heaviside.png" alt="Graph of the Heaviside function" height="100">
