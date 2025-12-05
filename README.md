@@ -93,14 +93,15 @@ The sigmoid activation function. Most commonly used in MLPs. You can use the tem
 
 ### 'relu'
 
+The rectified linear unit activation function
 <img src="./images/relu.png" alt="Graph of the ReLu function" height="200">
 
 ### 'leaky_relu'
 
+The leaky rectified linear unit activation function
 <img src="./images/leaky_relu.png" alt="Graph of the leaky ReLu function" height="200">
 
 ### 'heaviside'
 
 The heaviside function can only be used for SLPs
-
 <img src="./images/heaviside.png" alt="Graph of the Heaviside function" height="200">
