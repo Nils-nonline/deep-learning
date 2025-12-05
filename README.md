@@ -25,9 +25,9 @@ output_layer = Layer(layer_type="output",num_neurons=3)
 model.add_layer(output_layer)
 ```
 
-Model's constrcutor takes the following arguments:
+Model's constructor takes the following arguments:
 
-| Argument | Deacription | Default |
+| Argument | Description | Default |
 |----------|----------|----------|
 | model_type:str | currently only 'simple' is supported | 'simple' |
 | input_size:int | size of the inout in bits | 2 |
@@ -36,9 +36,9 @@ Model's constrcutor takes the following arguments:
 | neuron_stats:dict | default arguments for each Perceptron's constructor | {} |
 
 
-Layer's constrcutor takes the following arguments:
+Layer's constructor takes the following arguments:
 
-| Argument | Deacription | Default |
+| Argument | Description | Default |
 |----------|----------|----------|
 | layer_type:str | 'hidden' or 'output' | 'hidden' |
 | num_Perceptrona:int | number of neurons in the layer | 2 |
@@ -46,7 +46,7 @@ Layer's constrcutor takes the following arguments:
 
 Perceptron's constructor takes the following arguments:
 
-| Argument | Deacription | Default |
+| Argument | Description | Default |
 |----------|----------|----------|
 | num_weights:int | number of interbal weights a perceptron possesses | 3 |
 | aktivation_fun:str | activation function that is used see [Activation Functions](#activation-functions) | 'sigmoid' |
@@ -54,6 +54,19 @@ Perceptron's constructor takes the following arguments:
 | loss_func:str | loss function that is used see [Loss Functions](#loss-functions) | 'mse' |
 | dropout:int | dropout rate of the perceptron | 0 |
 | temperature:int | temperature for the sigmoid function if used | 0.1 |
+
+to view the models configuration use ```print(<your-model-object>)```. This will log the resulting model structure.
+
+
+## Training the model
+
+To train the model on a training sample run ```<your-model-object>.train``` providing a list of inputs and a list of the desired outputs.
+The function returns the current loss. To get an idea of how training could be implemented this way have a look at the [MLP examples](#examples).
+
+## Running the model
+
+To run your model just use ```<your-model-object>.feed_forward``` providing your lost of input values and you will get a list of the models outputs as the result.
+To get an idea of how this could be used for validation have a look at the [MLP examples](#examples).
 
 ## Loss Functions
 
@@ -70,17 +83,18 @@ The linear error function is much simpler than the mse, but can only be used for
 ### 'sigmoid'
 The sigmoid activation function. Most commonly used in MLPs
 
-![Graph of the Sigmoid function](./sigmoid.tiff "Sigmoid Function")
+<img src="./sigmoid.png" alt="Graph of the Sigmoid function" height="100">
 
 ### 'relu'
 
-![Graph of the ReLu function](./relu.tiff "ReLu Function")
+<img src="./relu.png" alt="Graph of the ReLu function" height="100">
 
 ### 'leaky_relu'
 
-![Graph of the leaky ReLu function](./leaky_relu.tiff "leaky ReLu Function")
+<img src="./leaky_relu.png" alt="Graph of the leaky ReLu function" height="100">
 
 ### 'heaviside'
 
-Th heaviside function can only be used for SLPs
-![Graph of the Heaviside function](./heaviside.tiff "Heaviside Function")
+The heaviside function can only be used for SLPs
+
+<img src="./heaviside.png" alt="Graph of the Heaviside function" height="100">
