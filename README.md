@@ -1,3 +1,3 @@
 # Deep Learning
 
-An implementation for inference and training of multilayer perceptron models.
+A from-scratch python implementation for inference and training of multilayer perceptron models.
