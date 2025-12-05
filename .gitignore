@@ -1,3 +1,4 @@
 kuenstliche-intelligenz.key
 test
 .DS_store
+.gitignore
