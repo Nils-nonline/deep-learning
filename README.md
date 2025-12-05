@@ -12,11 +12,13 @@ A from-scratch python implementation for inference and training of multilayer pe
 ## Usage
 
 download deep_learning.py and put it in your projects directory, then import it just like a regular module:  
-```from deep_learning import Perceptron, Layer, Model```
+```python
+from deep_learning import Perceptron, Layer, Model
+```
 
 ## Specifiying the model's structure
 
-```
+```python
 model = Model(input_size = 3)
 
 input_layer = Layer(layer_type="hidden",num_neurons=4)
