@@ -2,13 +2,6 @@
 
 A from-scratch python implementation for inference and training of multilayer perceptron models.
 
-
-## Examples
-
-| MLP           | SLP         |
-|---------------|-------------|
-| count_demo.py | and_demo.py |
-
 ## Usage
 
 download deep_learning.py and put it in your projects directory, then import it just like a regular module:  
@@ -73,6 +66,13 @@ The function returns the current loss. To get an idea of how training could be i
 
 To run your model just use ```<your-model-object>.feed_forward``` providing your lost of input values and you will get a list of the models outputs as the result.
 To get an idea of how this could be used for validation have a look at the [MLP examples](#examples).
+
+## Examples
+
+| MLP           | SLP         |
+|---------------|-------------|
+| count_demo.py | and_demo.py |
+
 
 ## Loss Functions
 
