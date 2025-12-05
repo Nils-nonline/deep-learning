@@ -25,7 +25,7 @@ output_layer = Layer(layer_type="output",num_neurons=3)
 model.add_layer(output_layer)
 ```
 
-Model's constrcutor takes the following arguments:
+Model's constructor takes the following arguments:
 
 | Argument | Deacription | Default |
 |----------|----------|----------|
@@ -36,7 +36,7 @@ Model's constrcutor takes the following arguments:
 | neuron_stats:dict | default arguments for each Perceptron's constructor | {} |
 
 
-Layer's constrcutor takes the following arguments:
+Layer's constructor takes the following arguments:
 
 | Argument | Deacription | Default |
 |----------|----------|----------|
@@ -55,6 +55,7 @@ Perceptron's constructor takes the following arguments:
 | dropout:int | dropout rate of the perceptron | 0 |
 | temperature:int | temperature for the sigmoid function if used | 0.1 |
 
+to view the models configuration use ```print(<your-model-object>)```. This will log the resulting model structure.
 ## Loss Functions
 
 This library supports several loss functions:
