@@ -65,8 +65,8 @@ The function returns the current loss. To get an idea of how training could be i
 
 ## Running the model
 
-To run your model just use ```<your-model-object>.feed_forward``` providing your lost of inoput values and you will get a list of the models outputs as the result.
-
+To run your model just use ```<your-model-object>.feed_forward``` providing your lost of input values and you will get a list of the models outputs as the result.
+To get an idea of how this could be used for validation have a look at the [MLP examples](#examples).
 
 ## Loss Functions
 
