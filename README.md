@@ -27,7 +27,7 @@ model.add_layer(output_layer)
 
 Model's constructor takes the following arguments:
 
-| Argument | Deacription | Default |
+| Argument | Description | Default |
 |----------|----------|----------|
 | model_type:str | currently only 'simple' is supported | 'simple' |
 | input_size:int | size of the inout in bits | 2 |
@@ -38,7 +38,7 @@ Model's constructor takes the following arguments:
 
 Layer's constructor takes the following arguments:
 
-| Argument | Deacription | Default |
+| Argument | Description | Default |
 |----------|----------|----------|
 | layer_type:str | 'hidden' or 'output' | 'hidden' |
 | num_Perceptrona:int | number of neurons in the layer | 2 |
@@ -46,7 +46,7 @@ Layer's constructor takes the following arguments:
 
 Perceptron's constructor takes the following arguments:
 
-| Argument | Deacription | Default |
+| Argument | Description | Default |
 |----------|----------|----------|
 | num_weights:int | number of interbal weights a perceptron possesses | 3 |
 | aktivation_fun:str | activation function that is used see [Activation Functions](#activation-functions) | 'sigmoid' |
@@ -56,6 +56,18 @@ Perceptron's constructor takes the following arguments:
 | temperature:int | temperature for the sigmoid function if used | 0.1 |
 
 to view the models configuration use ```print(<your-model-object>)```. This will log the resulting model structure.
+
+
+## Training the model
+
+To train the model on a training sample run ```<your-model-object>.train``` providing a list of inputs and a list of the desired outputs.
+The function returns the current loss. To get an idea of how training could be implemented this way have a look at the [MLP examples](#examples).
+
+## Running the model
+
+To run your model just use ```<your-model-object>.feed_forward`` providing your lost of inoput values and you will get a list of the models outputs as the result.
+
+
 ## Loss Functions
 
 This library supports several loss functions:
