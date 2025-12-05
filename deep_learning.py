@@ -2,10 +2,22 @@ import numpy as np
 import math
 import random
 
+"""
+Copyright (c) 2025 Nils Häußler. All Rights Reserved.
+
+This work may not be copied, reproduced, distributed, displayed, performed, modified, adapted, published, transmitted, or used to create derivative works in any form or by any means without the express prior written permission of the copyright owner. No rights are granted to any user except for the right to view the work for personal reference or rights explicitly granted by law. All other rights are strictly reserved to the author.
+"""
+
 np.set_printoptions(suppress=True)
 
 
 class Utilty:
+    """
+    Copyright (c) 2025 Nils Häußler. All Rights Reserved.
+
+    This work may not be copied, reproduced, distributed, displayed, performed, modified, adapted, published, transmitted, or used to create derivative works in any form or by any means without the express prior written permission of the copyright owner. No rights are granted to any user except for the right to view the work for personal reference or rights explicitly granted by law. All other rights are strictly reserved to the author.
+    """
+    
     def __init__(self):
         pass
     def get_loss_func(self,name):
@@ -40,6 +52,12 @@ class Utilty:
     
 
 class Perceptron(Utilty):
+    """
+    Copyright (c) 2025 Nils Häußler. All Rights Reserved.
+
+    This work may not be copied, reproduced, distributed, displayed, performed, modified, adapted, published, transmitted, or used to create derivative works in any form or by any means without the express prior written permission of the copyright owner. No rights are granted to any user except for the right to view the work for personal reference or rights explicitly granted by law. All other rights are strictly reserved to the author.
+    """
+    
     def __init__(self,num_weights=3,aktivation_fun="sigmoid",l_rate=0.01, loss_func = "mse", dropout=0, temperature = 0.1):
         self.weights = np.random.random_sample((num_weights,)) - 0.5
         self.f_akt_desc = aktivation_fun
@@ -224,7 +242,12 @@ class Perceptron(Utilty):
         
         self.weights += np.array(delta_weights)
 
-class Layer:    
+class Layer:
+    """
+    Copyright (c) 2025 Nils Häußler. All Rights Reserved.
+
+    This work may not be copied, reproduced, distributed, displayed, performed, modified, adapted, published, transmitted, or used to create derivative works in any form or by any means without the express prior written permission of the copyright owner. No rights are granted to any user except for the right to view the work for personal reference or rights explicitly granted by law. All other rights are strictly reserved to the author.
+    """
     def __init__(self, layer_type="hidden",num_neurons=2, stats = None):
         self.stats = stats
         self.num_neurons = num_neurons
@@ -277,6 +300,12 @@ class Layer:
             p.backpropagation(self,result,desired,input_,index)
 
 class Model(Utilty):
+    """
+    Copyright (c) 2025 Nils Häußler. All Rights Reserved.
+
+    This work may not be copied, reproduced, distributed, displayed, performed, modified, adapted, published, transmitted, or used to create derivative works in any form or by any means without the express prior written permission of the copyright owner. No rights are granted to any user except for the right to view the work for personal reference or rights explicitly granted by law. All other rights are strictly reserved to the author.
+    """
+    
     def __init__(self, model_type="simple", input_size=2, loss_func = "mse", random_seed = None, neuron_stats = {}):
         np.random.seed(random_seed)
         self.n_stats = neuron_stats
