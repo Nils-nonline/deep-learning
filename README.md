@@ -1,18 +1,17 @@
 # Deep Learning
 
-A from-scratch python implementation for inference and training of multilayer perceptron models.
+A python implementation for inference and training of multilayer perceptron models, completely from scratch.
 
+## Usage
 
-## Examples
-
-| MLP           | SLP         |
-|---------------|-------------|
-| count_demo.py | and_demo.py |
-
+download deep_learning.py and put it in your projects directory, then import it just like a regular module:  
+```python
+from deep_learning import Perceptron, Layer, Model
+```
 
 ## Specifiying the model's structure
 
-```
+```python
 model = Model(input_size = 3)
 
 input_layer = Layer(layer_type="hidden",num_neurons=4)
@@ -68,6 +67,13 @@ The function returns the current loss. To get an idea of how training could be i
 To run your model just use ```<your-model-object>.feed_forward``` providing your lost of input values and you will get a list of the models outputs as the result.
 To get an idea of how this could be used for validation have a look at the [MLP examples](#examples).
 
+## Examples
+
+| MLP           | SLP         |
+|---------------|-------------|
+| count_demo.py | and_demo.py |
+
+
 ## Loss Functions
 
 This library supports several loss functions:
@@ -81,20 +87,21 @@ The linear error function is much simpler than the mse, but can only be used for
 ## Activation Functions
 
 ### 'sigmoid'
-The sigmoid activation function. Most commonly used in MLPs
+The sigmoid activation function. Most commonly used in MLPs. You can use the temperature argument of the perceptron to change its appearance. The lower the temperature the more similar it is to a heaviside function. The higher the temperature the smoother it is.
 
 <img src="./images/sigmoid.png" alt="Graph of the Sigmoid function" height="200">
 
 ### 'relu'
 
+The rectified linear unit activation function  
 <img src="./images/relu.png" alt="Graph of the ReLu function" height="200">
 
 ### 'leaky_relu'
 
+The leaky rectified linear unit activation function  
 <img src="./images/leaky_relu.png" alt="Graph of the leaky ReLu function" height="200">
 
 ### 'heaviside'
 
-The heaviside function can only be used for SLPs
-
+The heaviside function can only be used for SLPs  
 <img src="./images/heaviside.png" alt="Graph of the Heaviside function" height="200">
