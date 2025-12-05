@@ -33,7 +33,7 @@ Model's constrcutor takes the following arguments:
 | input_size:int | size of the inout in bits | 2 |
 | loss_func:str | loss function that is used see [Loss Functions](#loss-functions) | 'mse' |
 | random_seed:int | random seed to ensure reproducability | None |
-| neuron_stats:dict | default arguments for each Perceptron's constrcutor | {} |
+| neuron_stats:dict | default arguments for each Perceptron's constructor | {} |
 
 
 Layer's constrcutor takes the following arguments:
@@ -42,7 +42,7 @@ Layer's constrcutor takes the following arguments:
 |----------|----------|----------|
 | layer_type:str | 'hidden' or 'output' | 'hidden' |
 | num_Perceptrona:int | number of neurons in the layer | 2 |
-| stats:int | default arguments for each Perceptron's constrcutor | None |
+| stats:int | default arguments for each Perceptron's constructor | None |
 
 Perceptron's constructor takes the following arguments:
 
@@ -72,10 +72,6 @@ The sigmoid activation function. Most commonly used in MLPs
 
 ![Graph of the Sigmoid function](./sigmoid.tiff "Sigmoid Function")
 
-### "heaviside"
-
-![Graph of the Heaviside function](./heaviside.tiff "Heaviside Function")
-
 ### "relu"
 
 ![Graph of the ReLu function](./relu.tiff "ReLu Function")
@@ -83,3 +79,8 @@ The sigmoid activation function. Most commonly used in MLPs
 ### "leaky_relu"
 
 ![Graph of the leaky ReLu function](./leaky_relu.tiff "leaky ReLu Function")
+
+### "heaviside"
+
+Th heaviside function can only be used for SLPs
+![Graph of the Heaviside function](./heaviside.tiff "Heaviside Function")
