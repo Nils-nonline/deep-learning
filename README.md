@@ -73,6 +73,8 @@ To get an idea of how this could be used for validation have a look at the [MLP 
 |---------------|-------------|
 | count_demo.py | and_demo.py |
 
+MLP = Multi-Layer Perceptron
+SLP = Single-Layer Perceptron
 
 ## Loss Functions
 
