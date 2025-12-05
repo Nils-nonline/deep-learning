@@ -1,6 +1,7 @@
 import numpy as np
 import math
 import random
+import torch
 
 """
 Copyright (c) 2025 Nils Häußler. All Rights Reserved.
@@ -8,7 +9,7 @@ Copyright (c) 2025 Nils Häußler. All Rights Reserved.
 This work may not be copied, reproduced, distributed, displayed, performed, modified, adapted, published, transmitted, or used to create derivative works in any form or by any means without the express prior written permission of the copyright owner. No rights are granted to any user except for the right to view the work for personal reference or rights explicitly granted by law. All other rights are strictly reserved to the author.
 """
 
-np.set_printoptions(suppress=True)
+#np.set_printoptions(suppress=True)
 
 
 class Utilty:
@@ -20,6 +21,12 @@ class Utilty:
     
     def __init__(self):
         pass
+    
+    def to_torch(self, array):
+        if isinstance(array, torch.Tensor):
+            return array
+        return torch.tensor(array, dtype = torch.float)
+    
     def get_loss_func(self,name):
         if name == "squared" or name == "mse":
             return self.mean_squared_error
@@ -29,7 +36,7 @@ class Utilty:
         raise Exception("No loss with the name {}".format(name))
     
     def mean_squared_error(self,result,desired):
-        return 1/2*np.power(np.abs(desired-result),2)
+        return 1/2*torch.pow(torch.abs(desired-result),2)
     
     def linear_error(self,result,desired):
         return (desired-result)
@@ -59,7 +66,7 @@ class Perceptron(Utilty):
     """
     
     def __init__(self,num_weights=3,aktivation_fun="sigmoid",l_rate=0.01, loss_func = "mse", dropout=0, temperature = 0.1):
-        self.weights = np.random.random_sample((num_weights,)) - 0.5
+        self.weights = torch.rand(num_weights, dtype = torch.float) - 0.5
         self.f_akt_desc = aktivation_fun
         
         self.dropout = dropout
@@ -91,26 +98,21 @@ class Perceptron(Utilty):
         
     def check_input(self, net):
         if self.weights.shape[0] == net.shape[0]+1:
-            net = np.append(net,1)
+            net = torch.cat((net,torch.tensor([1])))
         
         if self.weights.shape[0] != net.shape[0]:
             print("shape misfit. weights:"+str(self.weights.shape[0])+", input:"+str(net.shape[0]))
             print("one is due to bias")
         return net
-    
-    def to_np(self, array):
-        if isinstance(array, np.ndarray):
-            return array
-        return np.array(array)
         
     def net_sum(self, inputs):
-        inputs = self.check_input(self.to_np(inputs))
+        inputs = self.check_input(self.to_torch(inputs))
         
-        return np.dot(inputs, self.weights)
+        return torch.dot(inputs, self.weights)
     
     def get_f_akt(self):
         if self.f_akt_desc == "sigmoid":
-            return self.sigmoid
+            return torch.sigmoid
         
         if self.f_akt_desc == "heaviside":
             return self.heaviside
@@ -124,7 +126,7 @@ class Perceptron(Utilty):
         raise Exception("no activation function under the name '{}'".format(self.f_akt_desc))
     
     def sigmoid(self, x):
-        return 1/(1+np.exp(-self.inv_temperature*x))
+        return 1/(1+torch.exp(-self.inv_temperature*x))
     
     def heaviside(self, x):
         if x < 0:
@@ -157,7 +159,7 @@ class Perceptron(Utilty):
         raise Exception("no derivative of a function under the name '{}'".format(self.f_akt_desc))
     
     def sigmoid_d(self, x):
-        s = self.sigmoid(x)
+        s = torch.sigmoid(x)
         return self.inv_temperature * (1-s) * s
     
     def heaviside_d(self, x):
@@ -178,7 +180,7 @@ class Perceptron(Utilty):
         
         self.saved_net = self.net_sum(inputs)
         
-        self.saved_value = self.f_akt(self.saved_net)
+        self.saved_value = self.f_akt(self.saved_net)#Graph break?
         
         if random.random() < self.dropout and self.dropout != 0 and dropout:
             self.dropped_out = True
@@ -187,9 +189,9 @@ class Perceptron(Utilty):
         return self.saved_value
     
     def train_simple(self,inputs,should):
-        should = self.to_np(should)
+        should = self.to_torch(should)
         
-        inputs = self.check_input(self.to_np(inputs))
+        inputs = self.check_input(self.to_torch(inputs))
         
         result = self.feed_forward(inputs)
         
@@ -224,7 +226,7 @@ class Perceptron(Utilty):
     def backpropagation(self, parent_layer,result,desired,input_,perceptron_index):
         delta_weights = []
         
-        input_ = self.to_np(input_)
+        input_ = self.to_torch(input_)
         
         self.saved_delta = self.calculate_delta(parent_layer,result,desired,input_,perceptron_index)
         
@@ -240,7 +242,7 @@ class Perceptron(Utilty):
             
             delta_weights.append(delta_w)
         
-        self.weights += np.array(delta_weights)
+        self.weights += torch.tensor(delta_weights)
 
 class Layer:
     """
@@ -290,7 +292,7 @@ class Layer:
         for p in self.perceptrons:
             output.append(p.feed_forward(inputs, dropout))
         
-        return np.array(output)
+        return torch.tensor(output)
     
     def backpropagation(self, result,desired, input_):
         if self.type == "hidden":
@@ -360,6 +362,8 @@ class Model(Utilty):
     def train(self,input_,desired):
         self.clear_errors()
         
+        desired = self.to_torch(desired)
+        
         result = self.feed_forward(input_)
         
         for layer in reversed(self.layers):
@@ -372,4 +376,4 @@ class Model(Utilty):
         
         result = self.feed_forward(input_,False)
         
-        return (np.abs(desired-result).sum()**2)
+        return (torch.abs(desired-result).sum()**2).item()
