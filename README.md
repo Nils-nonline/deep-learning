@@ -59,12 +59,12 @@ to view the models configuration use ```print(<your-model-object>)```. This will
 
 ## Training the model
 
-To train the model on a training sample run ```<your-model-object>.train``` providing a list of inputs and a list of the desired outputs.
+To train the model on a training sample run ```<your-model-object>.train(input:list, desired:list)``` providing a list of inputs and a list of the desired outputs.
 The function returns the current loss. To get an idea of how training could be implemented this way have a look at the [MLP examples](#examples).
 
 ## Running the model
 
-To run your model just use ```<your-model-object>.feed_forward``` providing your lost of input values and you will get a list of the models outputs as the result.
+To run your model just use ```<your-model-object>.feed_forward(input:list)``` providing your lost of input values and you will get a list of the models outputs as the result.
 To get an idea of how this could be used for validation have a look at the [MLP examples](#examples).
 
 ## Examples
