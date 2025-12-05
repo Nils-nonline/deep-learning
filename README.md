@@ -87,7 +87,7 @@ The linear error function is much simpler than the mse, but can only be used for
 ## Activation Functions
 
 ### 'sigmoid'
-The sigmoid activation function. Most commonly used in MLPs
+The sigmoid activation function. Most commonly used in MLPs. You can use the temperature argument of the perceptron to change its appearance. The lower the temperature the more similar it is to a heaviside function. The higher the temperature the smoother it is.
 
 <img src="./images/sigmoid.png" alt="Graph of the Sigmoid function" height="200">
 
