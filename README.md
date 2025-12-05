@@ -82,5 +82,5 @@ The sigmoid activation function. Most commonly used in MLPs
 
 ### 'heaviside'
 
-Th heaviside function can only be used for SLPs
+The heaviside function can only be used for SLPs
 ![Graph of the Heaviside function](./heaviside.png "Heaviside Function")
