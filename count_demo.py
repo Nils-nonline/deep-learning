@@ -3,6 +3,7 @@ from deep_learning import Perceptron, Layer, Model
 import matplotlib.pyplot as plt
 import statistics
 import torch
+import cProfile
 
 """
 Copyright (c) 2025 Nils Häußler. All Rights Reserved.
@@ -45,36 +46,44 @@ x = []
 y = []
 
 
-for i in range(0,100000):
-    count += 1
+def train_run():
+    global count
+    global x
+    global y
+    global batch_loss
     
-
-    train_choice = random.choice(training_data)
-    
-    res = model.train(*train_choice)
-    
-    
-    batch_loss.append(res)
-    
-    if count % 10000 == 0:
-        for choice in training_data:
-            result = model.feed_forward(choice[0])
-            
-            text_res = "---------------\n"
-            text_res += "Iteration: {}\n".format(count)
-            text_res += "Input: {}\n".format(choice[0])
-            text_res += "Result: {}\n".format(result)
-            text_res += "Expected result: {}\n".format(choice[1])
-            text_res += "---------------\n"
-            
-            print(text_res)
-    
-    if len(batch_loss)>100:
-        del batch_loss[0]
+    for i in range(0,100000):#100000
+        count += 1
         
-    if count > 100:
-        x.append(count)
-        y.append(statistics.mean(batch_loss))
+
+        train_choice = random.choice(training_data)
+        
+        res = model.train(*train_choice)
+            
+        batch_loss.append(res)
+        
+        if count % 10000 == 0:
+            for choice in training_data:
+                result = model.feed_forward(choice[0])
+                
+                text_res = "---------------\n"
+                text_res += "Iteration: {}\n".format(count)
+                text_res += "Input: {}\n".format(choice[0])
+                text_res += "Result: {}\n".format(result)
+                text_res += "Expected result: {}\n".format(choice[1])
+                text_res += "---------------\n"
+                
+                print(text_res)
+        
+        if len(batch_loss)>100:
+            del batch_loss[0]
+            
+        if count > 100:
+            x.append(count)
+            y.append(statistics.mean(batch_loss))
+
+
+res = cProfile.run('train_run()')
 
 plt.plot(x,y)
 

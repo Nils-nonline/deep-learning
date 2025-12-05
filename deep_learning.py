@@ -1,4 +1,3 @@
-import numpy as np
 import math
 import random
 import torch
@@ -8,8 +7,6 @@ Copyright (c) 2025 Nils Häußler. All Rights Reserved.
 
 This work may not be copied, reproduced, distributed, displayed, performed, modified, adapted, published, transmitted, or used to create derivative works in any form or by any means without the express prior written permission of the copyright owner. No rights are granted to any user except for the right to view the work for personal reference or rights explicitly granted by law. All other rights are strictly reserved to the author.
 """
-
-#np.set_printoptions(suppress=True)
 
 
 class Utilty:
@@ -309,7 +306,7 @@ class Model(Utilty):
     """
     
     def __init__(self, model_type="simple", input_size=2, loss_func = "mse", random_seed = None, neuron_stats = {}):
-        np.random.seed(random_seed)
+        torch.manual_seed(0)
         self.n_stats = neuron_stats
             
         self.input_size = input_size
