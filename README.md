@@ -29,7 +29,7 @@ Model's constructor takes the following arguments:
 | Argument | Description | Default |
 |----------|----------|----------|
 | model_type:str | currently only 'simple' is supported | 'simple' |
-| input_size:int | size of the inout in bits | 2 |
+| input_size:int | size of the input in bits | 2 |
 | loss_func:str | loss function that is used see [Loss Functions](#loss-functions) | 'mse' |
 | random_seed:int | random seed to ensure reproducability | None |
 | neuron_stats:dict | default arguments for each Perceptron's constructor | {} |
@@ -40,7 +40,7 @@ Layer's constructor takes the following arguments:
 | Argument | Description | Default |
 |----------|----------|----------|
 | layer_type:str | 'hidden' or 'output' | 'hidden' |
-| num_Perceptrona:int | number of neurons in the layer | 2 |
+| num_Perceptrons:int | number of neurons in the layer | 2 |
 | stats:int | default arguments for each Perceptron's constructor | None |
 
 Perceptron's constructor takes the following arguments:
@@ -64,7 +64,7 @@ The function returns the current loss. To get an idea of how training could be i
 
 ## Running the model
 
-To run your model just use ```<your-model-object>.feed_forward(input:list)``` providing your lost of input values and you will get a list of the models outputs as the result.
+To run your model just use ```<your-model-object>.feed_forward(input:list)``` providing your list of input values and you will get a list of the models outputs as the result.
 To get an idea of how this could be used for validation have a look at the [MLP examples](#examples).
 
 ## Examples
