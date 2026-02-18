@@ -10,7 +10,6 @@ This work may not be copied, reproduced, distributed, displayed, performed, modi
 
 np.set_printoptions(suppress=True)
 
-
 class Utilty:
     """
     Copyright (c) 2025 Nils Häußler. All Rights Reserved.
@@ -240,7 +239,10 @@ class Perceptron(Utilty):
             
             delta_weights.append(delta_w)
         
-        self.weights += np.array(delta_weights)
+        self.delta_weights = np.array(delta_weights)
+        
+    def update_weights():
+        self.weights += self.delta_weights
 
 class Layer:
     """
@@ -298,7 +300,10 @@ class Layer:
         
         for index,p in enumerate(self.perceptrons):
             p.backpropagation(self,result,desired,input_,index)
-
+    
+    def update_weights():
+        for p in self.perceptrons:
+            p.update_weights()
 class Model(Utilty):
     """
     Copyright (c) 2025 Nils Häußler. All Rights Reserved.
@@ -365,6 +370,9 @@ class Model(Utilty):
         for layer in reversed(self.layers):
             layer.backpropagation(result,desired,input_)
         
+        for layer in self.layers:
+            layer.update_weights()
+            
         return self.eval(input_,desired)
     
     def eval(self, input_, desired):
